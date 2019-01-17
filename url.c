@@ -50,9 +50,9 @@ void parse_query(url_field_t *url, char *query)
    while (chr)
    {
       if (url->query)
-         url->query = realloc(url->query, (url->query_num + 1) * sizeof(*url->query));
+         url->query = (url_field_query_t*)realloc(url->query, (url->query_num + 1) * sizeof(*url->query));
       else
-         url->query = malloc(sizeof(*url->query));
+         url->query = (url_field_query_t*)malloc(sizeof(*url->query));
       url->query[url->query_num].name = strndup(query, chr - query);
       query = chr + 1;
       chr = strchr(query, '&');
